@@ -1,0 +1,359 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>okooo · 资料整理与信息索引</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+      background: #f2f4f6;
+      color: #1e2b3c;
+      line-height: 1.6;
+      padding: 2rem 1.2rem;
+    }
+
+    .page {
+      max-width: 1120px;
+      margin: 0 auto;
+    }
+
+    /* Hero */
+    .hero {
+      background: #ffffff;
+      border-radius: 28px;
+      padding: 2.8rem 2.4rem;
+      box-shadow: 0 6px 18px rgba(0, 0, 0, 0.04);
+      border: 1px solid #e4e8ec;
+      margin-bottom: 2.5rem;
+    }
+
+    .hero h1 {
+      font-size: 2.4rem;
+      font-weight: 600;
+      letter-spacing: -0.02em;
+      color: #111e2b;
+      margin-bottom: 0.6rem;
+    }
+
+    .hero p {
+      font-size: 1.1rem;
+      color: #2f4052;
+      max-width: 680px;
+    }
+
+    .hero .tagline {
+      display: inline-block;
+      background: #eef2f6;
+      border-radius: 40px;
+      padding: 0.3rem 1rem;
+      font-size: 0.85rem;
+      color: #2c4c6b;
+      margin-top: 1rem;
+      border: 1px solid #dce1e7;
+    }
+
+    /* 分栏卡片网格 */
+    .grid-3 {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1.5rem;
+      margin-bottom: 2.5rem;
+    }
+
+    .card {
+      background: #ffffff;
+      border-radius: 20px;
+      padding: 1.8rem 1.5rem;
+      box-shadow: 0 4px 14px rgba(0, 0, 0, 0.03);
+      border: 1px solid #e2e7ed;
+      transition: box-shadow 0.2s;
+    }
+
+    .card h3 {
+      font-size: 1.2rem;
+      font-weight: 600;
+      margin-bottom: 0.75rem;
+      color: #1f3347;
+      border-left: 4px solid #5f7f9a;
+      padding-left: 0.7rem;
+    }
+
+    .card p, .card li {
+      font-size: 0.95rem;
+      color: #2c4055;
+    }
+
+    .card ul {
+      list-style: none;
+      padding-left: 0;
+    }
+
+    .card ul li {
+      margin-bottom: 0.45rem;
+      padding-left: 1.2rem;
+      position: relative;
+    }
+
+    .card ul li::before {
+      content: "·";
+      position: absolute;
+      left: 0.2rem;
+      color: #6a8aa8;
+      font-weight: bold;
+    }
+
+    .badge {
+      display: inline-block;
+      background: #e6edf4;
+      border-radius: 30px;
+      padding: 0.2rem 0.8rem;
+      font-size: 0.75rem;
+      color: #1f3a52;
+      margin-top: 0.5rem;
+    }
+
+    /* 说明区 */
+    .explain {
+      background: #ffffff;
+      border-radius: 24px;
+      padding: 2rem 2.2rem;
+      border: 1px solid #e0e6ec;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.02);
+      margin-bottom: 2.2rem;
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      align-items: flex-start;
+    }
+
+    .explain-text {
+      flex: 2;
+      min-width: 240px;
+    }
+
+    .explain-text h2 {
+      font-size: 1.5rem;
+      font-weight: 600;
+      margin-bottom: 0.8rem;
+      color: #142433;
+    }
+
+    .explain-text p {
+      font-size: 0.95rem;
+      color: #31475e;
+      margin-bottom: 0.8rem;
+    }
+
+    .explain-highlight {
+      flex: 1;
+      min-width: 180px;
+      background: #f6f9fc;
+      border-radius: 16px;
+      padding: 1.3rem 1.2rem;
+      margin-left: 1.8rem;
+      border: 1px solid #dce3eb;
+      align-self: center;
+    }
+
+    .explain-highlight strong {
+      display: block;
+      font-size: 1rem;
+      margin-bottom: 0.6rem;
+      color: #1a334b;
+    }
+
+    .explain-highlight span {
+      color: #2f5477;
+    }
+
+    /* FAQ 摘要 */
+    .faq-summary {
+      background: #ffffff;
+      border-radius: 24px;
+      padding: 2rem 2.2rem;
+      border: 1px solid #e0e6ec;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.02);
+      margin-bottom: 2.2rem;
+    }
+
+    .faq-summary h2 {
+      font-size: 1.4rem;
+      font-weight: 600;
+      margin-bottom: 1.2rem;
+      color: #1a2d40;
+    }
+
+    .faq-item {
+      margin-bottom: 1.2rem;
+      border-bottom: 1px solid #ebeff3;
+      padding-bottom: 0.8rem;
+    }
+
+    .faq-item:last-child {
+      border-bottom: none;
+      margin-bottom: 0;
+      padding-bottom: 0;
+    }
+
+    .faq-q {
+      font-weight: 600;
+      color: #203a50;
+      margin-bottom: 0.3rem;
+      font-size: 1rem;
+    }
+
+    .faq-a {
+      color: #3d536a;
+      font-size: 0.9rem;
+    }
+
+    /* 底部链接 */
+    .footer-links {
+      background: #ffffff;
+      border-radius: 28px;
+      padding: 1.6rem 2rem;
+      border: 1px solid #e0e6ec;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.02);
+      text-align: center;
+      color: #34506b;
+      font-size: 0.9rem;
+    }
+
+    .footer-links a {
+      color: #1d5077;
+      text-decoration: none;
+      font-weight: 500;
+      border-bottom: 1px dotted #b5c7d7;
+    }
+
+    .footer-links a:hover {
+      color: #042a40;
+      border-bottom-style: solid;
+    }
+
+    .footer-links .sep {
+      margin: 0 0.6rem;
+      color: #9cb0c2;
+    }
+
+    /* 响应式 */
+    @media (max-width: 860px) {
+      .grid-3 {
+        grid-template-columns: repeat(2, 1fr);
+      }
+      .explain {
+        flex-direction: column;
+      }
+      .explain-highlight {
+        margin-left: 0;
+        margin-top: 1.2rem;
+        width: 100%;
+      }
+    }
+
+    @media (max-width: 560px) {
+      .grid-3 {
+        grid-template-columns: 1fr;
+      }
+      body {
+        padding: 1rem 0.8rem;
+      }
+      .hero h1 {
+        font-size: 1.8rem;
+      }
+    }
+  </style>
+</head>
+<body>
+<div class="page">
+  <!-- Hero -->
+  <section class="hero">
+    <h1>信息索引 · 资料整理</h1>
+    <p>在散落的信息中建立结构，从静态资料到动态分类。<a href="https://ok-ooo.com" style="color:#1d5077;text-decoration:underline;border-bottom:1px dotted #9bb2c7;">okooo</a> 提供轻量级的内容聚合与检索思路，帮助个人或小团队管理知识节点。</p>
+    <div class="tagline">面向资料整理 / 索引优先 / 低噪信息流</div>
+  </section>
+
+  <!-- 优势区 三卡 -->
+  <div class="grid-3">
+    <div class="card">
+      <h3>结构梳理</h3>
+      <ul>
+        <li>按主题、标签、层级组织资料</li>
+        <li>支持多维度索引与交叉引用</li>
+        <li>降低信息重复查找成本</li>
+      </ul>
+      <div class="badge">分类引擎</div>
+    </div>
+    <div class="card">
+      <h3>轻量归档</h3>
+      <ul>
+        <li>无需复杂数据库</li>
+        <li>静态化存储与检索</li>
+        <li>快速部署、零运维负担</li>
+      </ul>
+      <div class="badge">归档友好</div>
+    </div>
+    <div class="card">
+      <h3>检索优先</h3>
+      <ul>
+        <li>标题、摘要、标签全文匹配</li>
+        <li>筛选与排序混合查询</li>
+        <li>离线可用，索引本地化</li>
+      </ul>
+      <div class="badge">查询设计</div>
+    </div>
+  </div>
+
+  <!-- 说明区（信息密度较高） -->
+  <section class="explain">
+    <div class="explain-text">
+      <h2>从资料到索引</h2>
+      <p>多数信息管理工具聚焦于存储与展示，而索引效率决定了资料的可复用性。<strong>okooo</strong> 的思路是将「整理」前置：标签分类、层级嵌套、摘要提取，每个节点都可以作为检索入口。适合知识库、项目文档、笔记集合等场景。支持自定义字段与批量导入，资料规模从几百条到数万条均保持检索响应。</p>
+      <p>没有过度设计，但保留扩展接口。默认使用 JSON / Markdown 作为数据源，便于版本管理。索引规则可配置，中文分词与拼音模糊匹配均已内建。</p>
+    </div>
+    <div class="explain-highlight">
+      <strong>索引密度</strong>
+      <span>单条资料可关联 3 级标签、2 组自定义属性、时间戳与原文锚点。筛选响应 &lt; 60ms (10万条以内)。</span>
+    </div>
+  </section>
+
+  <!-- FAQ 摘要 -->
+  <section class="faq-summary">
+    <h2>常见问题 · 摘要</h2>
+    <div class="faq-item">
+      <div class="faq-q">需要什么技术基础才能使用索引功能？</div>
+      <div class="faq-a">基本文件操作即可。通过网页界面添加资料、打标签、搜索。无需命令行。数据以结构化文本保存。</div>
+    </div>
+    <div class="faq-item">
+      <div class="faq-q">索引支持哪些文件类型？</div>
+      <div class="faq-a">直接管理文本、链接、代码片段、短备注。图片与 PDF 可外链引用或存储路径索引。</div>
+    </div>
+    <div class="faq-item">
+      <div class="faq-q">能否迁移已有数据？</div>
+      <div class="faq-a">支持从 CSV、JSON、Notion 导出格式进行批量导入，也提供 API 写入接口。</div>
+    </div>
+    <div class="faq-item">
+      <div class="faq-q">索引之后如何分享或发布？</div>
+      <div class="faq-a">可生成静态快照，输出为独立 HTML 或部署为索引站点，供团队或公开访问。</div>
+    </div>
+  </section>
+
+  <!-- 底部链接 -->
+  <div class="footer-links">
+    <span>更多关于资料整理与索引设计，参见 </span>
+    <a href="https://ok-ooo.com">okooo</a>
+    <span class="sep">·</span>
+    <span>文档 · 指南 · 示例库</span>
+    <span class="sep">·</span>
+    <span style="color:#6f8aa4;">© 2025</span>
+  </div>
+</div>
+</body>
+</html>
